@@ -2,25 +2,285 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Spider-Man - Marvel Universe</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Web Marvel Superheroes - Spider-Man, Iron Man, Thor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-bottom: 3px solid #ef4444;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: #f8fafc;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background-color: #334155;
+            color: #f8fafc;
+            border: none;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #ef4444;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background-color: #dc2626;
+            box-shadow: 0 0 12px rgba(220, 38, 38, 0.6);
+        }
+
+        main {
+            max-width: 900px;
+            width: 90%;
+            margin: 30px auto;
+            flex: 1;
+        }
+
+        .page-content {
+            display: none;
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            border: 1px solid #334155;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #spiderman .hero-title { color: #ef4444; border-color: #ef4444; }
+        #ironman .hero-title { color: #f59e0b; border-color: #f59e0b; }
+        #thor .hero-title { color: #38bdf8; border-color: #38bdf8; }
+
+        .hero-subtitle {
+            font-style: italic;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .content-section {
+            margin-bottom: 20px;
+        }
+
+        .content-section h3 {
+            color: #f1f5f9;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .content-section p {
+            color: #cbd5e1;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .info-box {
+            background-color: #0f172a;
+            border-left: 4px solid;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        #spiderman .info-box { border-color: #ef4444; }
+        #ironman .info-box { border-color: #f59e0b; }
+        #thor .info-box { border-color: #38bdf8; }
+
+        .info-box ul {
+            list-style-type: square;
+            margin-left: 20px;
+            color: #94a3b8;
+        }
+
+        .info-box ul li {
+            margin-bottom: 6px;
+        }
+
+        footer {
+            background-color: #0f172a;
+            border-top: 1px solid #334155;
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>Marvel Superheroes</h1>
+        <h1>Website Tugas Kelompok - Marvel Superheroes</h1>
+        <p>Project Web 3 Halaman Dalam Satu Berkas Lengkap (HTML & CSS Combined)</p>
+        
         <nav>
-            <a href="index.html">Spider-Man</a>
-            <a href="ironman.html">Iron Man</a>
-            <a href="thor.html">Thor</a>
+            <button class="nav-btn active" onclick="showPage('spiderman', this)">Halaman 1: Spider-Man</button>
+            <button class="nav-btn" onclick="showPage('ironman', this)">Halaman 2: Iron Man</button>
+            <button class="nav-btn" onclick="showPage('thor', this)">Halaman 3: Thor</button>
         </nav>
     </header>
+
     <main>
-        <h2>Spider-Man (Peter Parker)</h2>
-        <p>Peter Parker adalah seorang siswa SMA biasa yang mendapatkan kekuatan super setelah digigit oleh laba-laba radioaktif. Ia memiliki kemampuan untuk memanjat dinding, indra laba-laba (spider-sense) yang memberinya peringatan bahaya, serta kekuatan fisik yang luar biasa.</p>
-        <p>Prinsip utama yang dipegangnya adalah <em>"With great power comes great responsibility"</em> (Dengan kekuatan yang besar, datang pula tanggung jawab yang besar). Ia melindungi kota New York dari berbagai ancaman villain seperti Green Goblin, Doc Ock, dan Venom.</p>
+        <!-- HALAMAN 1: SPIDER-MAN -->
+        <section id="spiderman" class="page-content active">
+            <h2 class="hero-title">🕸️ Halaman 1: Spider-Man (Peter Parker)</h2>
+            <p class="hero-subtitle">"With great power comes great responsibility."</p>
+            
+            <div class="content-section">
+                <h3>Asal Usul & Latar Belakang</h3>
+                <p>Peter Parker adalah seorang siswa SMA biasa yang hidup bersama Bibi May dan Paman Ben di Queens, New York. Kehidupannya berubah drastis setelah ia digigit oleh laba-laba radioaktif saat melakukan kaji lapangan ilmiah. Gigitan tersebut memberinya berbagai kekuatan superhuman seperti refleks luar biasa, kemampuan menempel di permukaan, serta indra laba-laba (spider-sense).</p>
+                <p>Tragedi kehilangan Paman Ben karena kejahatan yang sebenarnya bisa disetop oleh Peter menjadi titik balik kehidupannya untuk menggunakan kekuatannya demi menolong sesama sebagai Spider-Man.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Kemampuan & Karakteristik Utama:</h3>
+                <ul>
+                    <li><strong>Spider-Sense:</strong> Peringatan refleks terhadap bahaya mendekat.</li>
+                    <li><strong>Wall-Crawling:</strong> Mampu memanjat dinding dan langit-langit secara alami.</li>
+                    <li><strong>Web-Shooters:</strong> Alat pelontar jaring buatan sendiri untuk manuver dan bertarung.</li>
+                    <li><strong>Kecerdasan Sains:</strong> Pakar dalam bidang kimia, fisika, dan rekayasa teknologi.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Musuh Utama & Peran di Avengers</h3>
+                <p>Spider-Man sering berhadapan dengan kelompok musuh berbahaya seperti Sinister Six, Green Goblin, Doctor Octopus, dan Venom. Sebagai anggota termuda di Marvel Cinematic Universe, ia dibimbing oleh Tony Stark (Iron Man) dan tumbuh menjadi pelindung bumi yang tangguh.</p>
+            </div>
+        </section>
+
+        <!-- HALAMAN 2: IRON MAN -->
+        <section id="ironman" class="page-content">
+            <h2 class="hero-title">🦾 Halaman 2: Iron Man (Tony Stark)</h2>
+            <p class="hero-subtitle">"I am Iron Man."</p>
+
+            <div class="content-section">
+                <h3>Asal Usul & Latar Belakang</h3>
+                <p>Anthony Edward Stark adalah seorang genius, miliarder, dermawan, dan pemilik Stark Industries. Kehidupannya berubah ketika ia diculik oleh kelompok teroris Ten Rings. Dalam tawanan, meskipun menderita luka parah di dada akibat pecahan bom, Tony memanfaatkan kecerdasannya untuk membuat zirah besi pertama (Mark I) demi melarikan diri.</p>
+                <p>Pengalaman tersebut menyadarkannya untuk menghentikan produksi senjata perang dan beralih menggunakan teknologinya demi melindungi perdamaian dunia sebagai superhero bernomor zirah canggih, Iron Man.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Kekuatan & Teknologi Canggih:</h3>
+                <ul>
+                    <li><strong>Arc Reactor:</strong> Sumber energi murni tak terbatas di dadanya.</li>
+                    <li><strong>Zirah Canggih (Armor):</strong> Dibuat dengan nanoteknologi, repulsor ray, dan sistem penerbangan supersonik.</li>
+                    <li><strong>Sistem AI Khusus:</strong> Dibantu oleh kecerdasan buatan tingkat tinggi seperti J.A.R.V.I.S dan F.R.I.D.A.Y.</li>
+                    <li><strong>Kepemimpinan Strategis:</strong> Pemikir utama dan pendana Avengers.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Warisan & Pengorbanan</h3>
+                <p>Iron Man merupakan fondasi utama Avengers. Pengorbanan puncaknya terjadi saat ia menggunakan Infinity Stones untuk mengalahkan Thanos, menyelamatkan seluruh alam semesta, dan meninggalkan warisan teknologi serta inspirasi bagi pahlawan generasi berikutnya seperti Peter Parker.</p>
+            </div>
+        </section>
+
+        <!-- HALAMAN 3: THOR -->
+        <section id="thor" class="page-content">
+            <h2 class="hero-title">⚡ Halaman 3: Thor Odinson</h2>
+            <p class="hero-subtitle">"I choose to run TOWARDS my problems, and not away from them."</p>
+
+            <div class="content-section">
+                <h3>Asal Usul & Latar Belakang</h3>
+                <p>Thor Odinson adalah Dewa Petir dari realm Asgard, putra dari Raja Odin dan Ratu Frigga. Berasal dari mitologi Asgardian, Thor adalah prajurit tangguh yang kuat namun sempat memiliki sifat sombong. Karena keangkuhannya, ia diasingkan ke Bumi tanpa kekuatan oleh Odin agar ia belajar arti kerendahan hati.</p>
+                <p>Setelah belajar mencintai manusia dan memahami pengorbanan sejati, Thor kembali mendapatkan kelayakannya (worthiness) dan menjadi salah satu pelindung terkuat bagi Bumi maupun Sembilan Alam (Nine Realms).</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Senjata & Kekuatan Dewa:</h3>
+                <ul>
+                    <li><strong>Pengendali Petir:</strong> Menguasai badai, kilat, dan kekuatan fisik tingkat dewa.</li>
+                    <li><strong>Mjolnir:</strong> Palu magis yang hanya bisa diangkat oleh orang yang layak (Worthy).</li>
+                    <li><strong>Stormbreaker:</strong> Kapak pembunuh dewa dengan kemampuan membuka Bifrost teleportasi.</li>
+                    <li><strong>Ketahanan Fisik Asgardian:</strong> Tahan terhadap serangan ekstrem dan memiliki usia sangat panjang.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Perjalanan & Anggota Pendiri Avengers</h3>
+                <p>Sebagai salah satu anggota asli Avengers (Original Six), Thor bertarung melawan saudaranya Loki, Hela, hingga Thanos. Meskipun menghadapi kehilangan rumahnya Asgard dan keluarganya, Thor tetap berdiri tegak sebagai simbol keberanian dan kekuatan di seluruh galaksi.</p>
+            </div>
+        </section>
     </main>
+
     <footer>
-        <p>&copy; 2026 Tugas Web Marvel</p>
+        <p>&copy; 2026 Tugas Web Kelompok (2 Siswa) - Menggunakan HTML & CSS Native</p>
     </footer>
+
+    <script>
+        function showPage(pageId, btnElement) {
+            // Sembunyikan semua halaman
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Hapus status aktif dari semua tombol
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Tampilkan halaman yang dipilih & aktifkan tombolnya
+            document.getElementById(pageId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+    </script>
 </body>
 </html>
